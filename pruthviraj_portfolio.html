@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pruthviraj S Chavan — Portfolio 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=DM+Sans:wght@300;400;500&family=Permanent+Marker&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --paper:#f5f0e8;
+  --dark:#1a1a1a;
+  --accent:#ff6b35;
+  --accent2:#ffd700;
+  --accent3:#7fff00;
+  --pink:#ff4da6;
+  --cyan:#00e5ff;
+  --ink:#111;
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.07) 1px, transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  background:var(--paper);
+  padding:3rem 2rem 6rem;
+  text-align:center;
+  z-index:1;
+}
+
+.star{position:absolute;font-size:1.4rem;animation:spin 6s linear infinite;}
+.star1{top:6%;left:4%;}
+.star2{top:8%;right:8%;animation-direction:reverse;font-size:1rem;}
+.star3{top:4%;right:30%;font-size:.9rem;}
+.star4{top:14%;left:20%;font-size:.7rem;animation-duration:9s;}
+
+.year-badge{
+  display:inline-block;
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:100px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.8rem;
+  font-weight:500;
+  padding:.15rem .9rem;
+  letter-spacing:.05em;
+  margin-bottom:.4rem;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,20vw,9rem);
+  line-height:.95;
+  letter-spacing:-.01em;
+  position:relative;
+  display:inline-block;
+}
+
+.hero-title .circle-o{
+  display:inline-block;
+  position:relative;
+}
+.hero-title .circle-o::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:-6px;right:-6px;top:-4px;
+  border:3px solid var(--ink);
+  border-radius:50%;
+}
+
+.emoji-face{
+  font-size:clamp(1.5rem,5vw,3.5rem);
+  vertical-align:middle;
+  display:inline-block;
+  animation:wobble 2.5s ease-in-out infinite;
+}
+
+.hero-sub{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(.85rem,2.5vw,1rem);
+  letter-spacing:.15em;
+  color:#444;
+  margin-top:.8rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+.hero-sub .dot{color:var(--accent);font-size:1.1rem;}
+
+/* ── TORN EDGE ── */
+.torn{position:relative;margin-top:-2px;line-height:0;z-index:2;}
+.torn svg{width:100%;display:block;}
+
+/* ── DARK ── */
+.dark{
+  background:var(--dark);
+  color:#f0ece4;
+  position:relative;
+  z-index:1;
+  padding:3rem 1.5rem 4rem;
+}
+
+/* ── HELLO GRID ── */
+.hello-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  max-width:900px;
+  margin:0 auto 3rem;
+  align-items:center;
+}
+
+.polaroid-wrap{position:relative;display:flex;justify-content:center;}
+.polaroid{
+  background:#fff;
+  padding:12px 12px 46px;
+  transform:rotate(-3deg);
+  box-shadow:8px 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.1);
+  max-width:240px;
+  width:100%;
+  position:relative;
+}
+.polaroid-img{
+  width:100%;
+  aspect-ratio:1;
+  background:linear-gradient(135deg,#0d2b4e,#1a5fb5,#0a1f3d);
+  display:flex;align-items:center;justify-content:center;
+  font-size:5rem;
+  overflow:hidden;
+  position:relative;
+}
+.polaroid-img::before{content:'🚁';position:absolute;top:12px;left:12px;font-size:1.8rem;}
+.polaroid-img::after{
+  content:'';
+  position:absolute;
+  width:80px;height:80px;
+  border:4px solid var(--cyan);
+  border-radius:50%;
+  bottom:20px;right:10px;
+}
+.polaroid-name{
+  text-align:center;
+  font-family:'Caveat',cursive;
+  font-size:1.1rem;
+  color:var(--ink);
+  margin-top:.5rem;
+  font-weight:700;
+}
+.sticker-alien{position:absolute;top:-20px;left:-18px;font-size:2.2rem;transform:rotate(-10deg);}
+.sticker-tongue{position:absolute;bottom:-10px;right:-18px;font-size:2rem;transform:rotate(12deg);}
+.tape{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  width:60px;height:22px;
+  background:rgba(255,220,100,.55);
+  border-radius:3px;
+}
+
+.hello-text h2{
+  font-family:'Caveat',cursive;
+  font-size:clamp(2.5rem,7vw,4rem);
+  color:#f0ece4;
+  margin-bottom:.8rem;
+}
+.hello-text p{font-size:.95rem;color:#b0a898;line-height:1.75;}
+
+/* ── CONTACT ── */
+.contact-section h3{
+  font-family:'Caveat',cursive;
+  font-size:clamp(1.8rem,5vw,2.8rem);
+  color:#f0ece4;
+  margin-bottom:1rem;
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:.8rem;
+  max-width:900px;
+  margin:0 auto;
+}
+.contact-pill{
+  display:flex;align-items:center;gap:.7rem;
+  background:#2a2a2a;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:.8rem 1.1rem;
+  color:#d0c8bc;
+  transition:border-color .3s,transform .3s;
+}
+.contact-pill:hover{border-color:var(--accent);transform:translateY(-3px);}
+.pill-icon{font-size:1.4rem;min-width:28px;}
+.pill-label{font-size:.68rem;color:#666;letter-spacing:.1em;text-transform:uppercase;}
+.pill-val{font-size:.88rem;color:#f0ece4;}
+
+/* ── TWO COL ── */
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  max-width:900px;
+  margin:3rem auto 0;
+}
+
+.section-heading{
+  font-family:'Caveat',cursive;
+  font-size:clamp(2rem,6vw,3rem);
+  color:#f0ece4;
+  margin-bottom:1.5rem;
+  position:relative;
+  display:inline-block;
+}
+.section-heading .underline-wavy{
+  position:absolute;bottom:-6px;left:0;right:0;height:4px;
+  background:repeating-linear-gradient(90deg,var(--accent) 0,var(--accent) 8px,transparent 8px,transparent 14px);
+  border-radius:2px;
+}
+
+/* education */
+.edu-item{margin-bottom:1.5rem;}
+.edu-year{font-size:.75rem;color:#888;letter-spacing:.1em;font-family:'DM Sans',sans-serif;margin-bottom:.2rem;}
+.edu-degree{font-size:1rem;color:#f0ece4;font-weight:500;}
+.edu-school{font-size:.85rem;color:#888;font-style:italic;}
+.edu-cgpa{
+  display:inline-block;
+  margin-top:.4rem;
+  font-size:.75rem;
+  background:rgba(255,107,53,.15);
+  border:1px solid rgba(255,107,53,.3);
+  color:var(--accent);
+  padding:.15rem .6rem;
+  border-radius:100px;
+}
+
+/* skills */
+.skills-section{margin-top:2rem;}
+.skills-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
+.skill-tag{
+  background:#2a2a2a;
+  border:1px solid #3a3a3a;
+  border-radius:8px;
+  padding:.35rem .8rem;
+  font-size:.78rem;
+  color:#ccc;
+  transition:border-color .3s,color .3s;
+}
+.skill-tag:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* interests */
+.interests-section{margin-top:2rem;}
+.interest-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
+.interest-tag{
+  border:1px solid #444;
+  border-radius:100px;
+  padding:.3rem .9rem;
+  font-size:.8rem;
+  color:#aaa;
+  font-style:italic;
+  transition:border-color .3s,color .3s;
+}
+.interest-tag:hover{border-color:var(--accent2);color:var(--accent2);}
+
+/* ── EXPERIENCE / PROJECTS ── */
+.exp-item{
+  margin-bottom:1.8rem;
+  padding-bottom:1.8rem;
+  border-bottom:1px solid #2a2a2a;
+}
+.exp-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.exp-year{font-size:.72rem;color:var(--accent);letter-spacing:.1em;margin-bottom:.3rem;font-family:'DM Sans',sans-serif;}
+.exp-company{font-size:1.05rem;color:#f0ece4;font-weight:500;}
+.exp-role{font-size:.82rem;color:#888;font-style:italic;margin-bottom:.5rem;}
+.exp-desc{font-size:.85rem;color:#777;line-height:1.65;}
+
+/* ── PROJECTS FULL WIDTH ── */
+.projects-section{
+  max-width:900px;
+  margin:3rem auto 0;
+}
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1rem;
+  margin-top:1rem;
+}
+.project-card{
+  background:#222;
+  border:1px solid #333;
+  border-radius:14px;
+  padding:1.4rem;
+  transition:border-color .3s,transform .3s;
+}
+.project-card:hover{border-color:var(--cyan);transform:translateY(-4px);}
+.project-emoji{font-size:2rem;margin-bottom:.8rem;}
+.project-name{font-size:1rem;color:#f0ece4;font-weight:500;margin-bottom:.5rem;}
+.project-desc{font-size:.82rem;color:#777;line-height:1.6;}
+
+/* ── ACHIEVEMENTS ── */
+.achievements-section{
+  max-width:900px;
+  margin:3rem auto 0;
+}
+.achievement-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.8rem;}
+.achievement-list li{
+  display:flex;align-items:flex-start;gap:.8rem;
+  background:#222;border:1px solid #2e2e2e;
+  border-radius:10px;padding:1rem 1.2rem;
+  font-size:.88rem;color:#999;line-height:1.6;
+  transition:border-color .3s;
+}
+.achievement-list li:hover{border-color:var(--accent2);}
+.ach-icon{font-size:1.3rem;min-width:28px;}
+
+/* ── FOOTER ── */
+footer{
+  background:#111;
+  text-align:center;
+  padding:2rem;
+  color:#444;
+  font-size:.82rem;
+  border-top:1px solid #222;
+}
+footer span{color:var(--accent);}
+
+/* ── ANIMATIONS ── */
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes wobble{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:680px){
+  .hello-grid,.two-col{grid-template-columns:1fr;}
+  .polaroid-wrap{margin-bottom:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="star star1">✦</div>
+  <div class="star star2">✦</div>
+  <div class="star star3">✧</div>
+  <div class="star star4">✦</div>
+
+  <div class="year-badge">2024</div>
+  <br/>
+  <div class="hero-title">
+    P<span class="circle-o">o</span>rtf<span class="emoji-face">🚁</span>li<span class="circle-o">o</span>
+  </div>
+  <div class="hero-sub">
+    <span>Drone Technology</span>
+    <span class="dot">✦</span>
+    <span>IoT &amp; Embedded Systems</span>
+    <span class="dot">✦</span>
+    <span>Quantum Computing</span>
+  </div>
+</div>
+
+<!-- ═══ TORN PAPER ═══ -->
+<div class="torn">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,0 L0,45 Q30,70 60,48 Q90,26 130,52 Q165,75 200,50 Q235,25 275,58 Q310,80 350,55 Q388,30 425,60 Q460,82 500,55 Q540,28 575,55 Q610,78 650,50 Q690,22 730,55 Q768,80 810,52 Q848,24 890,58 Q928,80 965,55 Q1005,28 1045,58 Q1082,82 1120,55 Q1160,28 1200,55 Q1235,78 1270,52 Q1308,24 1350,55 Q1388,80 1440,50 L1440,0 Z" fill="#f5f0e8"/>
+  </svg>
+</div>
+
+<!-- ═══ DARK ═══ -->
+<div class="dark">
+
+  <!-- HELLO + POLAROID -->
+  <div class="hello-grid reveal">
+    <div class="polaroid-wrap">
+      <div class="tape"></div>
+      <div class="polaroid">
+        <div class="sticker-alien">🛸</div>
+        <div class="pruthviraj.jpg">👨‍💻</div>
+        <div class="polaroid-name">Pruthviraj S Chavan</div>
+        <div class="sticker-tongue">⚡</div>
+      </div>
+    </div>
+
+    <div class="hello-text">
+      <h2>Hello&nbsp;!</h2>
+      <p>
+        Hi, my name is <strong style="color:#f0ece4">Pruthviraj S Chavan</strong>,
+        a Computer Engineering student at G.H. Raisoni College of Engineering and Management, Pune,
+        with a strong passion for Drone Technology, IoT, Aeromodeling, Finance, and Quantum Computing.
+        I love building real-time systems, IoT-based solutions, and hardware-integrated projects that make an impact.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section reveal" style="max-width:900px;margin:0 auto 0;">
+    <h3>Contact</h3>
+    <div class="contact-grid">
+      <div class="contact-pill">
+        <div class="pill-icon">📱</div>
+        <div>
+          <div class="pill-label">Phone</div>
+          <div class="pill-val">+91 8975097839</div>
+        </div>
+      </div>
+      <div class="contact-pill">
+        <div class="pill-icon">📧</div>
+        <div>
+          <div class="pill-label">Email</div>
+          <div class="pill-val">pruthvirajchavan04513@gmail.com</div>
+        </div>
+      </div>
+      <a href="https://www.linkedin.com/in/pruthviraj-chavan-873736308" target="_blank" rel="noopener noreferrer" class="contact-pill" style="text-decoration:none;cursor:pointer;">
+        <div class="pill-icon">💼</div>
+        <div>
+          <div class="pill-label">LinkedIn</div>
+          <div class="pill-val">Pruthviraj S Chavan</div>
+        </div>
+      </a>
+      <div class="contact-pill">
+        <div class="pill-icon">🐙</div>
+        <div>
+          <div class="pill-label">GitHub</div>
+          <div class="pill-val">Pruthviraj S Chavan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDU + SKILLS  /  EXPERIENCE -->
+  <div class="two-col reveal">
+
+    <!-- LEFT -->
+    <div>
+      <h3 class="section-heading">Education<span class="underline-wavy"></span></h3>
+      <div class="edu-item">
+        <div class="edu-year">2023 – Present</div>
+        <div class="edu-degree">G.H. Raisoni College of Engineering and Management, Pune</div>
+        <div class="edu-school">B.Tech Computer Engineering · Minor in Quantum Computing</div>
+        <span class="edu-cgpa">CGPA: 8.27 / 10</span>
+      </div>
+
+      <div class="skills-section">
+        <h3 class="section-heading">Skills<span class="underline-wavy"></span></h3>
+        <div style="margin-bottom:.5rem;font-size:.72rem;color:#666;letter-spacing:.1em;text-transform:uppercase;">Languages</div>
+        <div class="skills-grid">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+        <div style="margin-top:1rem;margin-bottom:.5rem;font-size:.72rem;color:#666;letter-spacing:.1em;text-transform:uppercase;">Technologies</div>
+        <div class="skills-grid">
+          <span class="skill-tag">IoT</span>
+          <span class="skill-tag">Embedded Systems</span>
+          <span class="skill-tag">Real-Time Systems</span>
+          <span class="skill-tag">Sensor Integration</span>
+        </div>
+        <div style="margin-top:1rem;margin-bottom:.5rem;font-size:.72rem;color:#666;letter-spacing:.1em;text-transform:uppercase;">Hardware</div>
+        <div class="skills-grid">
+          <span class="skill-tag">Drone Systems</span>
+          <span class="skill-tag">RC Planes</span>
+          <span class="skill-tag">Microcontrollers</span>
+          <span class="skill-tag">Electronic Modules</span>
+        </div>
+      </div>
+
+      <div class="interests-section">
+        <div style="font-size:.78rem;color:#888;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;">Core Interests</div>
+        <div class="interest-tags">
+          <span class="interest-tag">Drone Technology</span>
+          <span class="interest-tag">IoT</span>
+          <span class="interest-tag">Finance</span>
+          <span class="interest-tag">Aeromodeling</span>
+          <span class="interest-tag">Quantum Computing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Experience -->
+    <div>
+      <h3 class="section-heading">Experience<span class="underline-wavy"></span></h3>
+
+      <div class="exp-item">
+        <div class="exp-year">2023 – 2025</div>
+        <div class="exp-company">College Student Forum</div>
+        <div class="exp-role">President – Student Forum</div>
+        <div class="exp-desc">Led the student forum and organized multiple non-technical events at college level. Managed teams, coordinated activities, handled event planning responsibilities. Developed leadership, communication, and organizational skills.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">2024 – Present</div>
+        <div class="exp-company">Google Developer Group (GDG)</div>
+        <div class="exp-role">Finance Lead – GDG Club</div>
+        <div class="exp-desc">Responsible for managing sponsorships and financial planning for technical events. Maintained expense records and prepared financial reports. Handled budgeting and financial management for club activities.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="projects-section reveal">
+    <h3 class="section-heading">Projects<span class="underline-wavy"></span></h3>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-emoji">🩸</div>
+        <div class="project-name">BloodCall App</div>
+        <div class="project-desc">Real-time mobile app connecting hospitals and blood donors in emergencies. Features alert notifications with location support, donor rating system, and an awareness section to remove misconceptions about blood donation.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-emoji">🌍</div>
+        <div class="project-name">Earthquake Detection System</div>
+        <div class="project-desc">IoT-based earthquake detection system using sensors and microcontrollers. Activates alarms, buzzers, and sends SOS notifications to registered users. Focused on real-time monitoring and early warning for public safety.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-emoji">🖥️</div>
+        <div class="project-name">Real-Time Multi User System</div>
+        <div class="project-desc">Real-time system capable of supporting multiple users simultaneously. Implemented synchronization and monitoring features ensuring stable performance across all concurrent sessions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="achievements-section reveal">
+    <h3 class="section-heading">Achievements<span class="underline-wavy"></span></h3>
+    <ul class="achievement-list">
+      <li>
+        <span class="ach-icon">✈️</span>
+        <span>Participated in the <strong style="color:#f0ece4">AIVSC Aeromodeling Competition</strong> — gained hands-on experience in aircraft design and flight control systems.</span>
+      </li>
+      <li>
+        <span class="ach-icon">🏆</span>
+        <span><strong style="color:#f0ece4">Winner of multiple inter-college speech competitions</strong> — demonstrated strong communication and public speaking skills.</span>
+      </li>
+      <li>
+        <span class="ach-icon">🚁</span>
+        <span>Extensive <strong style="color:#f0ece4">hands-on experience with drones and RC planes</strong> — including assembly, testing, and flight control.</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>Built by <span>Pruthviraj S Chavan</span> &nbsp;·&nbsp; Computer Engineering · GDG Finance Lead &nbsp;·&nbsp; © 2024</p>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:.1});
+  els.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
