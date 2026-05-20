@@ -208,11 +208,14 @@ body::before{
   padding:.8rem 1.1rem;
   color:#d0c8bc;
   transition:border-color .3s,transform .3s;
+  overflow:hidden;
+  min-width:0;
 }
 .contact-pill:hover{border-color:var(--accent);transform:translateY(-3px);}
-.pill-icon{font-size:1.4rem;min-width:28px;}
+.pill-icon{font-size:1.4rem;min-width:28px;flex-shrink:0;}
+.pill-text{min-width:0;overflow:hidden;}
 .pill-label{font-size:.68rem;color:#666;letter-spacing:.1em;text-transform:uppercase;}
-.pill-val{font-size:.88rem;color:#f0ece4;}
+.pill-val{font-size:.88rem;color:#f0ece4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* ── TWO COL ── */
 .two-col{
@@ -332,6 +335,58 @@ body::before{
 .achievement-list li:hover{border-color:var(--accent2);}
 .ach-icon{font-size:1.3rem;min-width:28px;}
 
+/* ── DARK/LIGHT MODE TOGGLE BUTTON ── */
+.mode-btn{
+  position:fixed;
+  top:.7rem;
+  right:.7rem;
+  z-index:9999;
+  display:flex;align-items:center;gap:.5rem;
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:100px;
+  padding:.4rem 1rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:.8rem;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:background .3s,color .3s,box-shadow .3s,transform .3s;
+  color:var(--ink);
+}
+.mode-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+.mode-btn .mode-icon{font-size:1rem;}
+
+/* ── LIGHT MODE OVERRIDES ── */
+body.light-mode .dark{
+  background:#f0ece4;
+  color:#111;
+}
+body.light-mode .dark .hello-text h2{color:#111;}
+body.light-mode .dark .hello-text p{color:#555;}
+body.light-mode .dark .contact-section h3{color:#111;}
+body.light-mode .dark .contact-pill{background:#fff;border-color:#ddd;color:#333;}
+body.light-mode .dark .contact-pill:hover{border-color:var(--accent);}
+body.light-mode .dark .pill-label{color:#999;}
+body.light-mode .dark .pill-val{color:#111;}
+body.light-mode .dark .section-heading{color:#111;}
+body.light-mode .dark .edu-degree{color:#111;}
+body.light-mode .dark .edu-school{color:#666;}
+body.light-mode .dark .skill-tag{background:#e8e4dc;border-color:#ccc;color:#333;}
+body.light-mode .dark .interest-tag{color:#555;border-color:#bbb;}
+body.light-mode .dark .exp-company{color:#111;}
+body.light-mode .dark .exp-role{color:#888;}
+body.light-mode .dark .exp-desc{color:#666;}
+body.light-mode .dark .exp-item{border-bottom-color:#ddd;}
+body.light-mode .dark .project-card{background:#fff;border-color:#ddd;}
+body.light-mode .dark .project-name{color:#111;}
+body.light-mode .dark .project-desc{color:#666;}
+body.light-mode .dark .achievement-list li{background:#fff;border-color:#ddd;color:#555;}
+body.light-mode .dark .achievement-list li strong{color:#111 !important;}
+body.light-mode footer{background:#e8e4dc;border-top-color:#ccc;color:#888;}
+body.light-mode .mode-btn{background:#1a1a1a;color:#f0ece4;border-color:#1a1a1a;box-shadow:3px 3px 0 #555;}
+body.light-mode .mode-btn:hover{box-shadow:5px 5px 0 #555;}
+
 /* ── FOOTER ── */
 footer{
   background:#111;
@@ -358,6 +413,12 @@ footer span{color:var(--accent);}
 </head>
 <body>
 
+<!-- ═══ DARK/LIGHT MODE TOGGLE ═══ -->
+<button class="mode-btn" onclick="toggleMode()" id="modeBtn">
+  <span class="mode-icon">☀️</span>
+  <span id="modeTxt">Light Mode</span>
+</button>
+
 <!-- ═══ HERO ═══ -->
 <div class="hero">
   <div class="star star1">✦</div>
@@ -365,8 +426,6 @@ footer span{color:var(--accent);}
   <div class="star star3">✧</div>
   <div class="star star4">✦</div>
 
-  <div class="year-badge">2024</div>
-  <br/>
   <div class="hero-title">
     P<span class="circle-o">o</span>rtf<span class="emoji-face">🚁</span>li<span class="circle-o">o</span>
   </div>
@@ -405,12 +464,13 @@ footer span{color:var(--accent);}
 
     <div class="hello-text">
       <h2>Hello&nbsp;!</h2>
-      <p>
-        Hi, my name is <strong style="color:#f0ece4">Pruthviraj S Chavan</strong>,
-        a Computer Engineering student at G.H. Raisoni College of Engineering and Management, Pune,
-        with a strong focus on building scalable full-stack applications, real-time distributed systems,
-        and IoT-based solutions. Experienced in backend architecture, API design, and synchronization systems,
-        with growing expertise in quantum computing and optimization algorithms.
+      <p style="font-size:.95rem;color:#b0a898;line-height:1.85;font-weight:300;letter-spacing:.01em;">
+        I am <strong style="color:#f0ece4;font-weight:500;">Pruthviraj S Chavan</strong>, a Computer Engineering undergraduate at
+        <strong style="color:#f0ece4;font-weight:500;">G.H. Raisoni College of Engineering and Management, Pune</strong>,
+        specializing in scalable full-stack application development, real-time distributed systems, and IoT-based engineering solutions.
+        I bring hands-on experience in backend architecture, RESTful API design, and multi-user synchronization systems,
+        complemented by an academic minor in <strong style="color:#f0ece4;font-weight:500;">Quantum Computing</strong> and
+        growing expertise in quantum optimization algorithms.
       </p>
     </div>
   </div>
@@ -421,28 +481,28 @@ footer span{color:var(--accent);}
     <div class="contact-grid">
       <div class="contact-pill">
         <div class="pill-icon">📱</div>
-        <div>
+        <div class="pill-text">
           <div class="pill-label">Phone</div>
           <div class="pill-val">+91 8975097839</div>
         </div>
       </div>
-      <div class="contact-pill">
-        <div class="pill-icon">📧</div>
-        <div>
+      <a href="mailto:pruthvirajchavan2129@gmail.com" class="contact-pill" style="text-decoration:none;cursor:pointer;">
+        <div class="pill-icon" style="background:linear-gradient(135deg,#4a4aff,#7b7bff);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;min-width:36px;flex-shrink:0;">@</div>
+        <div class="pill-text">
           <div class="pill-label">Email</div>
           <div class="pill-val">pruthvirajchavan2129@gmail.com</div>
         </div>
-      </div>
+      </a>
       <a href="https://www.linkedin.com/in/pruthviraj-chavan-873736308" target="_blank" rel="noopener noreferrer" class="contact-pill" style="text-decoration:none;cursor:pointer;">
         <div class="pill-icon">💼</div>
-        <div>
+        <div class="pill-text">
           <div class="pill-label">LinkedIn</div>
           <div class="pill-val">Pruthviraj S Chavan</div>
         </div>
       </a>
       <div class="contact-pill">
         <div class="pill-icon">🐙</div>
-        <div>
+        <div class="pill-text">
           <div class="pill-label">GitHub</div>
           <div class="pill-val">Pruthviraj S Chavan</div>
         </div>
@@ -580,11 +640,23 @@ footer span{color:var(--accent);}
     <ul class="achievement-list">
       <li>
         <span class="ach-icon">🏆</span>
-        <span><strong style="color:#f0ece4">Winner of multiple inter-college speech competitions</strong> — demonstrated strong communication and presentation skills.</span>
+        <span><strong style="color:#f0ece4">Winner — Inter-College Quiz Competition</strong> — demonstrated strong analytical thinking, general knowledge, and quick decision-making under pressure.</span>
+      </li>
+      <li>
+        <span class="ach-icon">🎤</span>
+        <span><strong style="color:#f0ece4">Winner — Inter-College Debate Competition</strong> — showcased exceptional argumentation, public speaking, and persuasive communication skills.</span>
+      </li>
+      <li>
+        <span class="ach-icon">🗣️</span>
+        <span><strong style="color:#f0ece4">Winner — Inter-College Speech Competition</strong> — delivered a compelling and well-structured speech, demonstrating strong oratory, confidence, and stage presence.</span>
+      </li>
+      <li>
+        <span class="ach-icon">🏸</span>
+        <span><strong style="color:#f0ece4">District-Level Badminton Player</strong> — represented the district in competitive badminton, reflecting discipline, athletic ability, and team spirit.</span>
       </li>
       <li>
         <span class="ach-icon">🚁</span>
-        <span>Hands-on experience working with <strong style="color:#f0ece4">drones and RC systems</strong> — including assembly, testing, and control.</span>
+        <span>Hands-on experience working with <strong style="color:#f0ece4">drones and RC systems</strong> — including assembly, testing, and flight control.</span>
       </li>
     </ul>
   </div>
@@ -602,6 +674,21 @@ footer span{color:var(--accent);}
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
   },{threshold:.1});
   els.forEach(el=>io.observe(el));
+
+  function toggleMode(){
+    const body = document.body;
+    const btn = document.getElementById('modeBtn');
+    const txt = document.getElementById('modeTxt');
+    const icon = btn.querySelector('.mode-icon');
+    body.classList.toggle('light-mode');
+    if(body.classList.contains('light-mode')){
+      icon.textContent = '🌙';
+      txt.textContent = 'Dark Mode';
+    } else {
+      icon.textContent = '☀️';
+      txt.textContent = 'Light Mode';
+    }
+  }
 </script>
 </body>
 </html>
